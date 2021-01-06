@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% block Title %}
+    Лекции
+    {% if Discipline_name %}
+        : {{ Discipline_name.name }}
+    {% endif %}
+
+{% endblock %}
+
+
+{% block Content %}
+    <style>.content {width: 98%;}</style>
+    <div class="disc">
+    <ul>
+        {% for disc in Disciplines %}
+           <li><a href="/lections/category/{{ disc.id }}" class = "
+                {% if disc.id == Descipline_id %}
+                      active
+                {% endif %}
+                                                                  "
+                >{{ disc.name }}</a>
+           </li>
+        {% endfor %}
+    </ul>
+    </div>
+
+    {% for el in page_obj.object_list %}
+       <div class="lectcover">
+            <a href="/lections/{{el.id}}">{{ el.title }}</a>
+           <p> {{ el.discipline }}</p>
+            <p>
+                {{ el.text|truncatewords:100 }}
+            </p>
+       </div>
+    {% endfor %}
+    <ul class="pages">
+    {% for foo in page_obj.paginator.page_range %}
+        <li><a href="?page={{ foo }}" class="pages_num"><span>{{ foo }}</span></a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

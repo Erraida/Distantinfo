@@ -1,0 +1,19 @@
+{% extends 'editor/base.html' %}
+{% block title %}
+    Редактор новостей
+{% endblock %}
+
+{% block content %}
+Контент
+    <form method="post">
+    {% csrf_token %}
+    {{ form.title }}
+        <br><br>
+    {{ form.discipline }}
+        <br><br>
+    {{ form.text }}
+        <br><br>
+    <button type="submit" class="sb">Опубликовать</button>
+    </form>
+
+{% endblock %}

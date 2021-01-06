@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% block Title %}
+{{ lecture.title }}
+{% endblock %}
+{% block Content %}
+<h2>{{ lecture.title }}</h2>
+    <p>
+    {{ lecture.text }}
+    </p>
+
+    {# {{ lecture.comment_set.all }} #}
+
+    {% for el in lecture.comment_set.all %}
+        <p><b>
+        {{ el.autor_name }}
+        </p></b>
+      <p>
+      {{ el.comment_text }}
+      </p>
+    {% endfor %}
+    <form action="{% url 'main:comment' lecture.id %}" id="commentform">
+         {% csrf_token %}
+        <input type="text" class="autor_name" name="name">
+            <br><br>
+        <textarea id="comment" required = "" name="textf"></textarea>
+            <br>
+        <button type="submit" class="sb">Оставить комментарий</button>
+    </form>
+{% endblock %}
