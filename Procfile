@@ -1,1 +1,1 @@
-web: gunicorn Distantinform.wsgi
+web: gunicorn DistantInform.wsgi
