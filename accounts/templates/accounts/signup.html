@@ -1,0 +1,30 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}
+    Вход
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+	        background:url('/static/images/lbg.webp');
+	    }
+    </style>
+<div class="parent">
+    <div class="logon">
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+
+        <form action="" method="post" class="log_form">
+            {% csrf_token %}
+            {{ forms.LogForm.as_p }}
+            <button type="submit" class="logon_form">Войти</button>
+        </form>
+            {{LogForm.errors}}
+        Нет аккаунта? <a href="{% url 'accounts:register' %}">Зарегестрироваться</a>
+    </div>
+</div>
+{% endblock %}

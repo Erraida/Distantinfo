@@ -1,0 +1,14 @@
+{% extends 'editor/base.html' %}
+{% block title %}
+    Редактор расписания
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button type="submit">Опубликовать</button>
+    </form>
+
+{% endblock %}

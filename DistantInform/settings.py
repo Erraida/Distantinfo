@@ -25,7 +25,7 @@ SECRET_KEY = '@!-*va$(3#4dn6n_44%*g@ggkgm))1_!fhc*a_$y&2$-yde74)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','192.168.0.103']
 
 
 # Application definition
@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'main',
-    'editor'
+    'editor',
+    'accounts',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
@@ -66,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'whitenoise.middleware.WhiteNoiseMiddleware',
             ],
         },
     },
@@ -87,10 +90,10 @@ DATABASES = {
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'postgres',
-#        'USER': 'postgres',
-#        'PASSWORD': 'rau717yp',
-#        'HOST': '127.0.0.1',
+#        'NAME': 'd232h6fdankv3m',
+#        'USER': 'syzuhwzcxmiyfi',
+#        'PASSWORD': '722f3011147232805c3740b013d44c82dcc85d68b543221482105e2f9af41adf',
+#        'HOST': 'ec2-54-75-248-49.eu-west-1.compute.amazonaws.com',
 #        'PORT': '5432',
 #    }
 #}
@@ -132,8 +135,31 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'a.nesterovtan@gmail.com' # типо адекватный логин
+EMAIL_HOST_PASSWORD = 'Rau717yp' # типо адекватный пароль
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+from .ckeditor_settings import *
+#AUTH_USER_MODEL = "accounts.Auth_user_prof"
+#if DEBUG:
+#    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#else:
+#    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -1,0 +1,26 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}
+    Профиль | {{ user_account.name }} {{ user_account.surname }}
+{% endblock %}
+
+{% block content %}
+    <div class="info">
+        <b>Имя:</b>{{ user_account.name }} {{ user_account.surname }}(<a href="{% url 'accounts:account_update' request.user.id %}">Обновить данные</a>)
+        <br>
+        <b>Группа:</b>{{ user_account.Group }}
+    </div>
+    <div class="info">
+        <form action="" method="post">
+        {% csrf_token %}
+        {{ Noteform.note }}
+            <br>
+        <button type="submit" class="notebtn">Написать</button>
+    </form>
+    </div>
+
+{% for note in notes %}
+    {{ note }}
+{% endfor %}
+
+{% endblock %}

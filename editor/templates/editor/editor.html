@@ -1,19 +1,63 @@
 {% extends 'editor/base.html' %}
+{% load static %}
 {% block title %}
     Редактор новостей
 {% endblock %}
 
 {% block content %}
-Контент
-    <form method="post">
-    {% csrf_token %}
-    {{ form.title }}
-        <br><br>
-    {{ form.discipline }}
-        <br><br>
-    {{ form.text }}
-        <br><br>
-    <button type="submit" class="sb">Опубликовать</button>
-    </form>
+    <style>
+    body, html{
+        height: 100%;
+    }
+    </style>
 
+<div class="cover">
+    <div class="editor">
+        <div class="editor-menu">
+            <ul>
+                <li><a href="{% url 'main:home' %}">Домой</a></li>
+
+                <li><a href="{% url 'editor:editor' %}">Редактор</a></li>
+
+                <li><a href="{% url 'editor:my' %}">Мои статьи</a></li>
+
+                <li><a href="{% url 'main:home' %}">Домой</a></li>
+            </ul>
+        </div>
+        {% for foo in lecture %}
+              <ul class="lect_list">
+
+            <li>{{ foo.title }}<br>Действия: <a href="{% url 'editor:lecture_up' foo.id %}">Редактировать</a> <a href="{% url 'editor:lecture_del' foo.id %}">Удалить</a></li>
+
+        </ul>
+        {% endfor %}
+{% if form %}
+
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button type="submit" class="sb">Опубликовать</button>
+        </form>
+{% endif %}
+         {{ error }}
+    </div>
+
+
+    <div class="sidebar">
+    Запросы лекций
+    <ul class="lect_list">
+    {% for request in requests %}
+        <li>
+            Тема: {{ request.title }}<br>
+            Дисциплина: {{ request.Discipline }}
+            <br><a href="{% url 'editor:request' request.id %}">Обновить статус</a></a>
+        </li>
+    {% endfor %}
+    </ul>
+
+
+    </div>
+</div>
 {% endblock %}

@@ -1,3 +1,4 @@
+{% load main_extras %}
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -14,6 +15,23 @@
                   <li><a href="{% url 'main:lections' %}">Лекции</a></li>
                   <li><a href="{% url 'main:shelude' %}">Расписание</a></li>
                   <li><a href="{% url 'main:about' %}">Контакты</a></li>
+                  {% if  request.user.is_staff %}
+                    <li><a href="{% url 'admin:index' %}">Админпанель</a></li>
+                  {% endif %}
+                  {% if request.user.is_anonymous %}
+                      <li><a href="{% url 'accounts:register' %}">Регистрация</a></li>
+                      <li><a href="{% url 'accounts:signup' %}">Войти</a></li>
+                  {% endif %}
+                  {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'main:request' %}">Запросить лекцию</a></li>
+                    <li><a href="{% url 'accounts:account_profile'%}">Профиль</a></li>
+                      {% if request.user|has_group:"лох" %}
+                            <li><a href="{% url 'editor:editor' %}">Редактор</a></li>
+                       {% endif %}
+                    <li><a href="{% url 'accounts:Logout' %}">Выйти</a></li>
+                  {% endif %}
+
+
               </ul>
           </div>
     </header>
@@ -21,6 +39,6 @@
 <div class="content">
 {% block Content %}{% endblock %}
 </div>
-<footer class="footer">1</footer>
+<footer class="footer">{{ user.id }}</footer>
 </body>
 </html>

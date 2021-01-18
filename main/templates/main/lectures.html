@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load main_extras %}
 
 {% block Title %}
     Лекции
@@ -11,6 +12,19 @@
 
 {% block Content %}
     <style>.content {width: 98%;}</style>
+    <form action="{% url 'main:seach' %}" method="post">
+        {% csrf_token %}
+        {{ forms.Seach }}
+
+        <br><br>
+        <button type="submit" class="sb">Найти</button>
+    </form>
+    {% for lect in lect %}
+    {{ lect }}
+    {% endfor %}
+
+
+    {{ Seach_q }}
     <div class="disc">
     <ul>
         {% for disc in Disciplines %}
@@ -19,7 +33,7 @@
                       active
                 {% endif %}
                                                                   "
-                >{{ disc.name }}</a>
+                ><div class="lect_nam">{{ disc.name }}</div>    <div class="lect_num"> {{ disc|lecture_coll:disc.id }}</div></a>
            </li>
         {% endfor %}
     </ul>

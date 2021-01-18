@@ -4,13 +4,19 @@
 {{ lecture.title }}
 {% endblock %}
 {% block Content %}
+    <style>
+
+    </style>
+    <br><br>
 <h2>{{ lecture.title }}</h2>
     <p>
-    {{ lecture.text }}
+    {{ lecture.text|safe }}
     </p>
 
     {# {{ lecture.comment_set.all }} #}
 
+    {{ autor }}
+    <a href="{% url 'main:favorite' lecture.id %}">Закладки</a>
     {% for el in lecture.comment_set.all %}
         <p><b>
         {{ el.autor_name }}

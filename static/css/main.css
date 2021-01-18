@@ -1,7 +1,6 @@
 
 *{padding: 0px;
   margin: 0px;
-  list-style-type: none; 
 }
 html, body {
   height: 100%;
@@ -37,11 +36,17 @@ header{
   background:#778899;
   border-bottom: 3px solid black;
   border-top:1px solid #778899;
+    transition: .1s linear;
 }
 .exit {
     margin-left:83%;
 }
-.top-menu a:hover{background:#80C8A0; border-bottom: 3px solid red; border-bottom-color:red;border-top:1px solid #80C8A0; transition: .2s linear;}
+.top-menu a:hover{
+    background:#80C8A0;
+    border-bottom: 3px solid red;
+    border-bottom-color:red;
+    border-top:1px solid #80C8A0;
+    transition: .1s linear;}
 #animpreloader{display: block;
 				position: fixed;
 				z-index: 99999;top: 0;left: 0;
@@ -80,7 +85,6 @@ header{
 .sb {
     width: 300px;
     height: 40px;
-    height: 40px;
 }
 .disc{
     margin: 10px;
@@ -90,7 +94,8 @@ header{
 }
 
 .disc a {
-    width: 200px;
+    width: 204px;
+    height: 20px;
     border: 1px solid black;
     display: block;
     text-decoration:none;
@@ -100,7 +105,21 @@ a.active, .disc a:hover {
     background: lightslategrey;
     color: white;
 }
-
+a div {
+    display: inline-block;
+}
+.lect_num {
+    margin-right: 0;
+    background: crimson;
+    color: #F5F5F5;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    vertical-align: center;
+}
+.lect_nam{
+    min-width: 180px;
+}
 .lectcover {
     margin-top: 10px;
     border: 1px solid black;
@@ -127,4 +146,171 @@ a.pages_num {
 }
 a.pages_num:hover {
     background: lightslategrey;
+}
+.shelude {
+    border-collapse: collapse
+}
+.shelude td {
+    width: 200px;
+    height: 40px;
+    background: antiquewhite;
+}
+.shelude td:first-child {
+    background: #778899;
+    color: #F5F5F5;
+    border-top: 1px solid #F5F5F5;
+}
+td.nn {
+    background: aquamarine;
+}
+
+.shelude_list{
+  display: flex;
+}
+a.shellink_ch  {
+    display: block;
+    margin: 2px;
+    width: 100px;
+    color: white;
+    text-decoration: none;
+    background: lightslategrey;
+}
+a.shellink{
+    display: block;
+    min-width: 200px;
+    max-width: 250px;
+    margin: 2px;
+    color: white;
+    background: lightslategrey;
+    text-decoration: none;
+}
+.cover{
+    display: flex;
+    direction: initial;
+    height: 100%;
+}
+.editor{
+    width: 80%;
+
+}
+.sidebar{
+    width: 20%;
+    height: 100%;
+    background: lightslategrey;
+    color: black;
+    border-left: 2px solid black;
+
+}
+.sidebar a {
+    text-decoration: none;
+    color: white;
+}
+.lect_list li {
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+.lect_edit{
+    width: 100%;
+    height: 30px;
+}
+.editor-menu{
+    width: 100%;
+    height: 40px;
+    background: lightslategrey;
+    border-bottom: 2px solid black;
+}
+.editor-menu ul {
+    display: flex;
+    list-style-type: none;
+}
+.editor-menu a {
+    display: block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+
+}
+.editor-menu a:hover{
+    background: #80C8A0;
+    border-bottom: 2px solid red;
+}
+.django-ckeditor-widget { width: 100%; }
+
+
+
+[data-tooltip] {
+    position: relative;
+    white-space: pre-line;/* Относительное позиционирование */
+   }
+   [data-tooltip]::after {
+    opacity: 0;
+
+   content: attr(data-tooltip); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 20%; top: 30%; /* Положение подсказки */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,230,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border: 1px solid #333; /* Параметры рамки */
+   }
+   [data-tooltip]:hover::after {
+    opacity: 1; /* Показываем подсказку */
+   }
+.logon{
+    width:auto;
+    background: #D3D3D3;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    position: absolute;
+     padding-left:10%;
+    height:100%;
+
+}.parent {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;}
+
+ .logon_form{
+    width:450px;
+    height:50px;
+    padding: 5px;
+    margin:10px;
+    border-radius:0px;
+    font-family: news;
+    border:1px solid #2F4F4F;
+}
+.log_form {
+    margin-top: 50%;
+}
+.req {
+    width: 600px;
+    height: 30px;
+}
+.group {
+    width: 1206px;
+    height: 30px;
+    margin-top: 30px;
+     margin-bottom: 30px;
+}
+.info {
+    width: 100%;
+    border: 1px solid black;
+    margin-top: 10px;
+}
+.noteform {
+    width: 100%;
+    height: 100px;
+    resize: none;
+}
+.notebtn {
+    margin-top: 10px;
+    width: 100%;
+    height: 30px;
 }

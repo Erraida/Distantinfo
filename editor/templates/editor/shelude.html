@@ -1,0 +1,19 @@
+{% extends 'editor/base.html' %}
+{% block title %}
+    Редактор расписаний
+{% endblock %}
+
+{% block content %}
+{% for data in Shelude %}
+    <ul>
+        <li class="shelude_list"><a href="{{ data.id }}" class="shellink">{{ data.Group }}  {{ data.Day }}</a> <a href="{{ data.id }}" class="shellink_ch">Редактировать</a><a href="{% url 'editor:shelude_del' data.id %}" class="shellink_ch">Удалить</a></li>
+    </ul>
+{% endfor %}
+
+    <form method="post">
+    {% csrf_token %}
+    {{ SheludeForm.as_p }}
+    <button type="submit">Опубликовать</button>
+    </form>
+
+{% endblock %}
