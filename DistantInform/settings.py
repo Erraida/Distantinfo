@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'DistantInform.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd232h6fdankv3m',
-        'USER': 'syzuhwzcxmiyfi',
-        'PASSWORD': '722f3011147232805c3740b013d44c82dcc85d68b543221482105e2f9af41adf',
-        'HOST': 'ec2-54-75-248-49.eu-west-1.compute.amazonaws.com',
+        'NAME': 'd418jm3chaphmb',
+        'USER': 'yelzhjywehushm',
+        'PASSWORD': 'dc0c798a05286c4cedd851fbcf76ef1f061d00de23f05925fcbdffce5af5ef22',
+        'HOST': 'ec2-54-78-127-245.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
