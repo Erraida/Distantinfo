@@ -23,8 +23,11 @@ def about(request):
 
 
 def shelude(request):
-    grp = Group.objects.first()
-    group_id = grp.id
+    try:
+        grp = Group.objects.first()
+        group_id = grp.id
+    except:
+        group_id = 1
     if request.method == "POST":
         group = groupForm(request.POST)
 
@@ -37,15 +40,17 @@ def shelude(request):
     forms = {
         'group':group
     }
-    group = Group.objects.get(id=group_id)
+    try:
+        group = Group.objects.get(id=group_id)
+        pn = Shelude.objects.filter(Group=group_id, Day=1)
+        vt = Shelude.objects.filter(Group=group_id, Day=2)
+        sr = Shelude.objects.filter(Group=group_id, Day=3)
+        ch = Shelude.objects.filter(Group=group_id, Day=4)
+        pt = Shelude.objects.filter(Group=group_id, Day=5)
 
-    pn = Shelude.objects.filter(Group=group_id, Day=1)
-    vt = Shelude.objects.filter(Group=group_id, Day=2)
-    sr = Shelude.objects.filter(Group=group_id, Day=3)
-    ch = Shelude.objects.filter(Group=group_id, Day=4)
-    pt = Shelude.objects.filter(Group=group_id, Day=5)
-    return render(request, 'main/shelide.html',{'pon':pn,'vt':vt,'sr':sr,'chet':ch,'pt':pt, 'forms':forms,'group':group,})
-
+        return render(request, 'main/shelide.html',{'pon': pn, 'vt': vt, 'sr': sr, 'chet': ch, 'pt': pt, 'forms': forms, 'group': group, })
+    except:
+        return render(request, 'main/shelide.html',{'forms':forms,'group':group,})
 
 def lections(request):
     Lectures = Lecture.objects.all()
