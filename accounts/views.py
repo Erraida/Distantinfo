@@ -31,7 +31,7 @@ def register(request):
                 settings.EMAIL_HOST_USER,
                 [mail],
                 html_message=msg_html,
-                fail_silently=False
+                fail_silently=True
 
             )
             redirect('accounts:register')
