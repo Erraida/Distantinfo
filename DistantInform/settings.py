@@ -151,12 +151,20 @@ STATICFILES_DIRS = (
 
 CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'a.nesterovtan@gmail.com' # типо адекватный логин
-EMAIL_HOST_PASSWORD = 'Rau717yp' # типо адекватный пароль
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+response = requests.get("https://mailtrap.io/api/v1/inboxes.json?api_token=ce0c6bf235ac7cf29136cb05740e1d8c")
+credentials = response.json()[0]
+
+EMAIL_HOST = credentials['domain']
+EMAIL_HOST_USER = credentials['username']
+EMAIL_HOST_PASSWORD = credentials['password']
+EMAIL_PORT = credentials['smtp_ports'][0]
+EMAIL_USE_TLS = True
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST_USER = 'a.nesterovtan@gmail.com' # типо адекватный логин
+#EMAIL_HOST_PASSWORD = 'Rau717yp' # типо адекватный пароль
+#EMAIL_PORT = 465
+#EMAIL_USE_SSL = True
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 from .ckeditor_settings import *
 #AUTH_USER_MODEL = "accounts.Auth_user_prof"
