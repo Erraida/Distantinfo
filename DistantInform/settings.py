@@ -164,7 +164,8 @@ EMAIL_HOST = 'smtp-relay.sendinblue.com'
 EMAIL_HOST_USER = 'a.nesterovtan@gmail.com' # типо адекватный логин
 EMAIL_HOST_PASSWORD = '74Xj6vZbG3qwI9QB' # типо адекватный пароль
 EMAIL_PORT = 587
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 from .ckeditor_settings import *
 #AUTH_USER_MODEL = "accounts.Auth_user_prof"
