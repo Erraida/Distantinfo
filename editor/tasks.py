@@ -40,19 +40,19 @@ def Lecture_check():
     user_set = User.objects.all()
     try:
         DefLect = DeferredLecture.objects.all()
-     
+
         for lect in DefLect:
             lectTime = lect.date
             CurTime = datetime.today()
             if lectTime < CurTime:
                 new_lect = Lecture(
-                            title=lect.title,
-                            discipline=lect.discipline,
-                            text=lect.text,
-                            date=lect.date,
-                            User=lect.User,
-                            image=lect.image
-                            )
+                    title=lect.title,
+                    discipline=lect.discipline,
+                    text=lect.text,
+                    date=lect.date,
+                    User=lect.User,
+                    image=lect.image
+                )
 
                 new_lect.save()
                 lect.delete()
@@ -67,6 +67,6 @@ def Lecture_check():
                 sendTask = group(lecture_mail.s(mail_set, msg_html), discord_send.s(lect.title, lect.text))
                 sendTask.apply_async()
 
-
-
+    except:
+        pass
 
