@@ -1,3 +1,3 @@
 web: gunicorn DistantInform.wsgi
-worker: celery worker --app=DistantInform.celery.app -beat
+worker: celery -A DistantInform.celery.app worker -l info -B
 release: python manage.py makemigrations
