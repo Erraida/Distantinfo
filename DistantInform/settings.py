@@ -24,7 +24,7 @@ SECRET_KEY = '@!-*va$(3#4dn6n_44%*g@ggkgm))1_!fhc*a_$y&2$-yde74)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.103']
+ALLOWED_HOSTS = ['127.0.0.1', 'https://distantinfo.herokuapp.com/']
 
 # Application definition
 
