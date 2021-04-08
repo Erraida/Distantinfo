@@ -70,8 +70,3 @@ def Lecture_check():
 
 
 
-
-@shared_task(ignore_result=True)
-def add_new():
-    g = group(discord_send.s())
-    g.apply_async()
