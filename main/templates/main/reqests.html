@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block Title %}
+Запрос лекции
+{% endblock %}
+{% block Content %}
+    <br>
+    <form action="" method="post">
+    {% csrf_token %}
+        {{ request.Discipline }}
+            <br><br>
+        {{ request.title }}
+            <br><br>
+    <button type="submit" class="req">Запросить</button>
+
+    </form>
+{% endblock %}

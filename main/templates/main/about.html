@@ -4,6 +4,24 @@
     О нас
 {% endblock %}
 {% block Content %}
-Текст
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
+
+    <div id="ajax-text-me">12</div>
+
+<script>
+
+$.ajax({
+    url: 'jquery/',
+    type: 'get',
+    success: function(data) {
+
+        $("#ajax-text-me").html(data)
+
+    },
+    failure: function(data) {
+        alert('Got an error dude');
+    }
+});
+</script>
 {% endblock %}

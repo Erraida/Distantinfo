@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -25,8 +24,7 @@ SECRET_KEY = '@!-*va$(3#4dn6n_44%*g@ggkgm))1_!fhc*a_$y&2$-yde74)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['distantinfo.herokuapp.com']
-
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.103']
 
 # Application definition
 
@@ -39,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'main',
-    'editor'
+    'editor',
+    'accounts',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -74,27 +75,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DistantInform.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 # install psycopg2 req
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#   }
-#}
-## ------postgresql--------
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd232h6fdankv3m',
-        'USER': 'syzuhwzcxmiyfi',
-        'PASSWORD': '722f3011147232805c3740b013d44c82dcc85d68b543221482105e2f9af41adf',
-        'HOST': 'ec2-54-75-248-49.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+## ------postgresql--------
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'postgres',
+#        'USER': 'postgres',
+#        'PASSWORD': 'rau717yp',
+#        'HOST': '127.0.0.1',
+#        'PORT': '5432',
+#    }
+# }
 
 
 # Password validation
@@ -115,22 +115,25 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
-USE_TZ = True
+USE_TZ = False
+
+DATETIME_FORMAT = '%d/%m/%Y %H:%M'
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -139,7 +142,35 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
+
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'a.nesterovtan@gmail.com' # типо адекватный логин
+# EMAIL_HOST_PASSWORD = 'Rau717yp' # типо адекватный пароль
+# EMAIL_PORT = 465
+# EMAIL_USE_SSL = True
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST_USER = 'a.nesterovtan@gmail.com'  # типо адекватный логин
+EMAIL_HOST_PASSWORD = '74Xj6vZbG3qwI9QB'  # типо адекватный пароль
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+from .ckeditor_settings import *
+
+# Celery Configuration Options
+CELERY_TIMEZONE = "Europe/Moscow"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'

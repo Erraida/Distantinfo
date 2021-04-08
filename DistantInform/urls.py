@@ -15,11 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import handler404, handler500
+from main.views import error_404
+from django.conf import settings
+from django.conf.urls.static import static
 
 import main
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
-    path('editor/', include('editor.urls'))
+    path('editor/', include('editor.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

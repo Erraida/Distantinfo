@@ -1,19 +1,92 @@
 {% extends 'editor/base.html' %}
+{% load static %}
 {% block title %}
     Редактор новостей
 {% endblock %}
 
 {% block content %}
-Контент
-    <form method="post">
-    {% csrf_token %}
-    {{ form.title }}
-        <br><br>
-    {{ form.discipline }}
-        <br><br>
-    {{ form.text }}
-        <br><br>
-    <button type="submit" class="sb">Опубликовать</button>
-    </form>
+    <style>
+    body, html{
+        height: 100%;
+    }
+    </style>
+
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/jquery.datetimepicker.full.min.js"></script>
+    <link rel="stylesheet" href="/static/css/jquery.datetimepicker.css">
+
+
+<div class="cover">
+    <div class="editor">
+        <div class="editor-menu">
+            <ul>
+                <li><a href="{% url 'main:home' %}">Домой</a></li>
+
+                <li><a href="{% url 'editor:editor' %}">Редактор</a></li>
+
+                <li><a href="{% url 'editor:my' %}">Мои статьи</a></li>
+
+                <li><a href="{% url 'editor:students' %}">Студенты</a></li>
+            </ul>
+        </div>
+        {% for foo in lecture %}
+              <ul class="lect_list">
+
+            <li>{{ foo.title }}<br>Действия: <a href="{% url 'editor:lecture_up' foo.id %}">Редактировать</a> <a href="{% url 'editor:lecture_del' foo.id %}">Удалить</a></li>
+
+        </ul>
+        {% endfor %}
+{% if form %}
+
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button type="submit" class="sb">Опубликовать</button>
+        </form>
+{% endif %}
+         {{ error }}
+    </div>
+
+
+    <div class="sidebar">
+    Запросы лекций
+    <ul class="lect_list">
+    {% for request in requests %}
+        <li>
+            Тема: {{ request.title }}<br>
+            Дисциплина: {{ request.Discipline }}
+            <br><a href="{% url 'editor:request' request.id %}">Обновить статус</a></a>
+        </li>
+    {% endfor %}
+    </ul>
+
+
+    </div>
+</div>
+
+    <script>
+    jQuery('#id_date').datetimepicker({
+                      format:'Y-m-d H:i',
+                       lang:'ru'
+        });
+        $('#id_rel_pub').on('click',function () {
+            if ($('#id_rel_pub').prop('checked')===true){
+                $('#id_date').prop("disabled", false);
+                $('#id_date').prop("autocomplete", 'off');
+                $('#id_date').css('background','white')
+
+
+            }else {
+                $('#id_date').prop("disabled", true);
+                $('#id_date').val(null);
+                $('#id_date').css('background','lightgray')
+            }
+
+
+        })
+
+    </script>
 
 {% endblock %}

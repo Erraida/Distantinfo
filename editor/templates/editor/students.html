@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% load editor_extras %}
+{% block Title %}
+    Студенты
+{% endblock %}
+{% block Content %}
+    {% for group in groups %}
+        <details class="groups">
+            <summary>{{ group}}</summary>
+            <table class="students_table" border="1">
+            <thead>
+                <tr>
+                    <th>фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                    {% for student in group|Students:group.id  %}
+                        <tr><td>{{ student.surname }}</td> <td>{{ student.name }}</td> <td>{{ student.mid_name|default_if_none:''}}</td><td>{{ email|email:student.User }}</td></tr>
+                    {% endfor %}
+            </table>
+        </details>
+    {% endfor %}
+{% endblock %}

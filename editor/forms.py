@@ -1,21 +1,63 @@
-from django.forms import ModelForm,TextInput,Textarea,Select
+import datetime
 
-from main.models import Lecture, Discipline
+from ckeditor.fields import RichTextField
+from ckeditor.widgets import CKEditorWidget
+from django.forms import ModelForm, TextInput, Textarea, Select, HiddenInput, DateTimeField, DateTimeInput
+
+from main.models import Lecture,Shelude
+from main.models import DiscList
 from django import forms
 
 
 class LectureForm(ModelForm):
+    text = forms.CharField(widget=CKEditorWidget())
+    date = forms.DateTimeField(
+        input_formats=['%Y-%m-%d %H:%M'],
+        required=False,
+        widget=forms.DateTimeInput(attrs={
+             'class': 'lect_edit',
+              'placeholder' : 'Дата публикации',
+              'disabled':'true'
+
+        }))
+
+
     class Meta:
         model = Lecture
-        fields = ['title', 'discipline', 'text']
+        fields = ['discipline','title', 'date','rel_pub','text']
         widgets = {
-            'title' : TextInput(attrs={
+           'title' : TextInput(attrs={
                 'class': 'lect_edit',
                 'placeholder' : 'Название'
             }),
             'discipline':Select(attrs={
                 'class':'lect_edit'
             }),
-            'text':Textarea(attrs={
-                'class':'lect-edit'})
+
+
         }
+    def __init__(self, *args, **kwargs):
+        super(LectureForm, self).__init__(*args, **kwargs)
+        self.fields['discipline'].empty_label = "Выберите дисциплину"
+        self.fields['discipline'].label = ""
+        self.fields['text'].label = ""
+        self.fields['title'].label = ""
+        self.fields['date'].label = ""
+        self.fields['rel_pub'].label = "Отложенная публикация"
+
+    def clean(self):
+        cleaned_data = super().clean()
+        rel_pub = cleaned_data.get("rel_pub")
+        date = cleaned_data.get("date")
+
+        if rel_pub:
+            print(rel_pub)
+            if not date:
+                raise forms.ValidationError(
+                    "Did not send for 'help' in the subject despite "
+                    "CC'ing yourself."
+                )
+class SheludeForm(ModelForm):
+    class Meta:
+        model = Shelude
+        fields = '__all__'

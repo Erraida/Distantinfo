@@ -1,0 +1,22 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}
+    Обновление информации
+{% endblock %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+        {{ form.Group }}
+        <br><br>
+        {{ form.surname }}
+        <br><br>
+        {{ form.name }}
+        <br><br>
+        {{ form.mid_name }}
+        <br><br>
+    <button type="submit" class="req">
+        Обновить
+    </button>
+</form>
+
+{% endblock %}

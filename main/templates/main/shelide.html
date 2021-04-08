@@ -1,9 +1,39 @@
 {% extends 'main/base.html' %}
+{% load main_extras %}
 
 {% block Title %}
-Расписание
+Расписание | {{ group.group_num }}
 {% endblock %}
+
 {% block Content %}
-Текст
-    {{ News }}
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <form action="" method="post" name="groupForm">
+        {% csrf_token %}
+        {{ forms.group }}
+    </form>
+<script>
+$( "#id_group" ).change(function() {
+        var token = '{{csrf_token}}';
+        var data = $('#id_group').val();
+
+        console.log(token)
+         $.ajax({
+            headers: { "X-CSRFToken": token },
+            url: '/shelide_jquery/',
+            type: 'POST',
+            data: {'group':data},
+            success: function(data) {
+
+                $("#shelude").html(data)
+
+            },
+            failure: function(data) {
+                alert('Не удалось');
+            }
+        });
+}).change();
+
+</script>
+<div id="shelude"></div>
+
 {% endblock %}

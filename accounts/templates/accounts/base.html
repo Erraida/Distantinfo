@@ -1,0 +1,38 @@
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static "css/main.css" %}" />
+    </head>
+    <body>
+        <header>
+              <div class="top-menu">
+                  <ul >
+                      <li><a href="{% url 'main:home' %}">Главная</a></li>
+                      <li><a href="{% url 'main:lections' %}">Лекции</a></li>
+                      <li><a href="{% url 'main:shelude' %}">Расписание</a></li>
+                      <li><a href="{% url 'main:about' %}">Контакты</a></li>
+                      {% if  request.user.is_staff %}
+                        <li><a href="{% url 'admin:index' %}">Админпанель</a></li>
+                      {% endif %}
+                      {% if request.user.is_anonymous %}
+                          <li><a href="{% url 'accounts:register' %}">Регистрация</a></li>
+                          <li><a href="{% url 'accounts:signup' %}">Войти</a></li>
+                      {% endif %}
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'main:request' %}">Запросить лекцию</a></li>
+                        <li><a href="{% url 'accounts:account_profile'%}">Профиль</a></li>
+                        <li><a href="{% url 'accounts:Logout' %}">Выйти</a></li>
+                    {% endif %}
+                  </ul>
+              </div>
+        </header>
+        <div class="falsh"></div>
+        <div class="content">
+        {% block content %}{% endblock %}
+        </div>
+        <footer class="footer">{{ user.id }}</footer>
+    </body>
+</html>
+

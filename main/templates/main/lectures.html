@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load main_extras %}
 
 {% block Title %}
     Лекции
@@ -10,33 +11,66 @@
 
 
 {% block Content %}
-    <style>.content {width: 98%;}</style>
-    <div class="disc">
-    <ul>
-        {% for disc in Disciplines %}
-           <li><a href="/lections/category/{{ disc.id }}" class = "
-                {% if disc.id == Descipline_id %}
-                      active
-                {% endif %}
-                                                                  "
-                >{{ disc.name }}</a>
-           </li>
-        {% endfor %}
-    </ul>
-    </div>
+    <style>
+        .content {width: 98%;}
+    </style>
 
-    {% for el in page_obj.object_list %}
-       <div class="lectcover">
-            <a href="/lections/{{el.id}}">{{ el.title }}</a>
-           <p> {{ el.discipline }}</p>
-            <p>
-                {{ el.text|truncatewords:100 }}
-            </p>
-       </div>
-    {% endfor %}
-    <ul class="pages">
-    {% for foo in page_obj.paginator.page_range %}
-        <li><a href="?page={{ foo }}" class="pages_num"><span>{{ foo }}</span></a></li>
-    {% endfor %}
-    </ul>
+
+
+
+    {{ Seach_q }}
+<wprapper>
+<div>
+    <form action="{% url 'main:seach' %}" method="post" id="seach">
+        {% csrf_token %}
+        {{ Seach }}<button type="submit" class="sb">Найти</button>
+
+
+    </form>
+</div>
+    <div class="content_body">
+
+    <div class="art_list">
+        {% if not page_obj %}
+            <div class="nodata">
+
+            </div>
+        {% endif %}
+        {% for el in page_obj.object_list %}
+             <article class="article">
+                <div class="art_title">
+                    <b>Заголовок:</b> <a href="{% url 'main:Curr_lecture' lecture_id=el.id %}"><span class="art_title">{{ el.title }}</span></a>
+                </div>
+                <div class="art_content">
+                    <hr>
+                        {{ el.text|safe|truncatewords:100 }}
+                </div>
+                <div class="art_footer">
+                    <hr>
+                    <ul class="art_data">
+                        <li><b>Автор: </b> {{ el.User }}</li>
+                        <li><b>Дисциплина: </b> {{ el.discipline }}</li>
+                    </ul>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+        <sidebar>
+        <div class="disc">
+        <ul>
+            {% for disc in Disciplines %}
+               <li><a href="/lections/category/{{ disc.id }}" class = "
+                    {% if disc.id == Descipline_id %}
+                          active
+                    {% endif %}                                                 "
+               ><div class="lect_nam">{{ disc.name }}</div>    <div class="lect_num"> {{ disc|lecture_coll:disc.id }}</div></a>
+               </li>
+            {% endfor %}
+        </ul>
+        </div>
+    </sidebar>
+    </div>
+</wprapper>
+
+
 {% endblock %}
