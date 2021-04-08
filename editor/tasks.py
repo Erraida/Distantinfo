@@ -40,10 +40,7 @@ def Lecture_check():
     user_set = User.objects.all()
     try:
         DefLect = DeferredLecture.objects.all()
-    except:
-        DefLect = None
-    
-    if DefLect not None:
+     
         for lect in DefLect:
             lectTime = lect.date
             CurTime = datetime.today()
