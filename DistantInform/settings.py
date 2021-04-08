@@ -78,23 +78,24 @@ WSGI_APPLICATION = 'DistantInform.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 # install psycopg2 req
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
+}"""
 ## ------postgresql--------
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'postgres',
-#        'USER': 'postgres',
-#        'PASSWORD': 'rau717yp',
-#        'HOST': '127.0.0.1',
-#        'PORT': '5432',
-#    }
-# }
+ DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'rau717yp',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+ }
 
 
 # Password validation
