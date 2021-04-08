@@ -38,33 +38,37 @@ def discord_send(em_title, text):
 @shared_task
 def Lecture_check():
     user_set = User.objects.all()
-    DefLect = DeferredLecture.objects.all()
+    try:
+        DefLect = DeferredLecture.objects.all()
+    except:
+        DefLect = None
+    
+    if DefLect not None:
+        for lect in DefLect:
+            lectTime = lect.date
+            CurTime = datetime.today()
+            if lectTime < CurTime:
+                new_lect = Lecture(
+                            title=lect.title,
+                            discipline=lect.discipline,
+                            text=lect.text,
+                            date=lect.date,
+                            User=lect.User,
+                            image=lect.image
+                            )
 
-    for lect in DefLect:
-        lectTime = lect.date
-        CurTime = datetime.today()
-        if lectTime < CurTime:
-            new_lect = Lecture(
-                        title=lect.title,
-                        discipline=lect.discipline,
-                        text=lect.text,
-                        date=lect.date,
-                        User=lect.User,
-                        image=lect.image
-                        )
+                new_lect.save()
+                lect.delete()
 
-            new_lect.save()
-            lect.delete()
+                mail_set = []
+                for mail in user_set:
+                    mail_set.append(mail.email)
+                mail_set = list(filter(None, mail_set))
 
-            mail_set = []
-            for mail in user_set:
-                mail_set.append(mail.email)
-            mail_set = list(filter(None, mail_set))
+                msg_html = render_to_string('editor/lecture_mail.html', {'text': lect.text})
 
-            msg_html = render_to_string('editor/lecture_mail.html', {'text': lect.text})
-
-            sendTask = group(lecture_mail.s(mail_set, msg_html), discord_send.s(lect.title, lect.text))
-            sendTask.apply_async()
+                sendTask = group(lecture_mail.s(mail_set, msg_html), discord_send.s(lect.title, lect.text))
+                sendTask.apply_async()
 
 
 
