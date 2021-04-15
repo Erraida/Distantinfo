@@ -69,3 +69,7 @@ def Lecture_check():
 
     except:
         pass
+<<<<<<< HEAD
+=======
+
+>>>>>>> 52b387ca6cc463e94dbf20500bc745ddb3fade8a
