@@ -11,7 +11,7 @@ from accounts.models import Group
 
 
 def sheludeService(group_id):
-    global pn,vt,sr,ch,pt = None
+    
     try:
         pon_id = Day.objects.get(day='Понедельник').id
     except:
@@ -45,7 +45,11 @@ def sheludeService(group_id):
 
         days = (pn,vt,sr,ch,pt)
     except:
-
+        pn=None
+        vt=None
+        sr=None
+        ch=None
+        pt=None
         days = (pn,vt,sr,ch,pt)
 
     return days,group
