@@ -50,6 +50,7 @@ def sheludeService(group_id):
         sr=None
         ch=None
         pt=None
+        group=None
         days = (pn,vt,sr,ch,pt)
 
     return days,group
