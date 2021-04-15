@@ -43,9 +43,9 @@ def index(request):
                 def_lectire_saveController(request)
             else:
                 lecture_saveController(request, form)
-
+                mail_set,msg_html = mailController(request)
                 sendTask = group(
-                    lecture_mail.s(mailController(request)),
+                    lecture_mail.s(mail_set,msg_html),
                     discord_send.s(
                         request.POST.get('title'),
                         request.POST.get('text')[:100])
