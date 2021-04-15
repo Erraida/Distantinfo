@@ -11,6 +11,7 @@ from accounts.models import Group
 
 
 def sheludeService(group_id):
+    global pn,vt,sr,ch,pt
     try:
         pon_id = Day.objects.get(day='Понедельник').id
     except:
