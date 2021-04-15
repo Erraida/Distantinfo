@@ -1,7 +1,5 @@
 from django import forms
 from django.forms import ModelForm, TextInput, Select
-
-
 from editor.models import Group
 from .models import LectRequest, Comment
 

@@ -38,9 +38,6 @@ class Lecture(models.Model):
         return '/editor/'
 
     def clean(self):
-        """
-        Require at least one of ipv4 or ipv6 to be set
-        """
         if  (self.rel_pub and not self.date):
             raise ValidationError("Введите дату")
 

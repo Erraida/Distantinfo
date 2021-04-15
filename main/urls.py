@@ -14,10 +14,11 @@ urlpatterns = [
     path('lections/<int:lecture_id>/', views.lections_detail, name='Curr_lecture'),
     path('lections/<int:lecture_id>/comments/', views.comment, name='comment'),
 
-    path('favorite/<int:lect>/', views.favorite, name='favorite'),
+    path('favorite/<int:lect>/', views.add_to_favorite, name='favorite'),
     path('request/', views.makerequest, name='request'),
 
     path('shelide_jquery/', views.shelude_jquery, name='shelide_jquery'),
+
 
 
 ]

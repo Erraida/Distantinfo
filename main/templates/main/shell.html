@@ -1,0 +1,42 @@
+{% load main_extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table border="1" class="shel_head">
+    <tr><td colspan="6">{{ group }}</td></tr>
+    <tr><td>День</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+</table>
+<div class="shell_cont">
+    <table border="1" class="shelude">
+        <tr><td>Понедельник</td></tr>
+        <tr><td>Вторник</td></tr>
+        <tr><td>Среда</td></tr>
+        <tr><td>Четверг</td></tr>
+        <tr><td>Пятница</td></tr>
+    </table>
+    <table border="1" class="shelude_n">
+        {% for day in data %}
+            {% if day %}
+
+
+                {% for foo in day %}
+                    <tr>
+                            <td{% if foo.first_lect %} class="nn" data-tooltip="{{ d|lector:foo.first_lect.id}}"{% endif %}>{{ foo.first_lect|default_if_none:""  }}</td>
+                            <td{% if foo.second_lect %}  class="nn"  data-tooltip="{{ d|lector:foo.second_lect.id}}"{% endif %}>{{ foo.second_lect|default_if_none:"" }}</td>
+                            <td{% if foo.thrid_lect %} class="nn" data-tooltip="{{ d|lector:foo.thrid_lect.id}}"{% endif %}>{{ foo.thrid_lect|default_if_none:"" }}</td>
+                            <td{% if foo.four_lect %} class="nn" data-tooltip="{{ d|lector:foo.four_lect.id}}"{% endif %}>{{ foo.four_lect|default_if_none:"" }}</td>
+                            <td{% if foo.five_lect %} class="nn" data-tooltip="{{ d|lector:foo.five_lect.id}}"{% endif %}>{{ foo.five_lect|default_if_none:"" }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

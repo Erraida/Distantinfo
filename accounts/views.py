@@ -9,30 +9,16 @@ from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.template.loader import render_to_string
 
+from .services import registration
 from .tasks import register_confirm
 
 
 # Create your views here.
 def register(request):
+    global RegForm
     if request.method == "POST":
-        RegForm = Registrstion(request.POST)
-        if RegForm.is_valid():
-            RegForm.save()
-            print(1)
-            login = request.POST.get('username')
-            usr_id = User.objects.get(username=login).id
-            Profile = UserAccount(User_id=usr_id)
-            Profile.save()
-
-            mail = request.POST.get('email')
-            msg_html = render_to_string('accounts/email.html', {'login': login})
-
-            reg_mail = register_confirm.s(mail, msg_html)
-            reg_mail.apply_async()
-            print(1)
-            return redirect('accounts:signup')
-        else:
-            messages.error(request, 'Ошибка регистрации')
+        registration(request)
+        return redirect('accounts:signup')
     else:
         RegForm = Registrstion()
     forms = {
@@ -60,6 +46,7 @@ def Signup(request):
 
 def Logout(request):
     logout(request)
+    return redirect('main:home')
 
 
 def profile(request):

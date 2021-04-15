@@ -1,93 +1,33 @@
 {% load main_extras %}
-<table border="1" class="shelude">
-<caption>{{ group }}</caption>
-    <thead>
-        <th>День недели</th>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-        <th>5</th>
-        </th>
-    </thead>
-    <tr>
-
-
-            <td>Понедельник</td>
-
-               {% if pon %}
-                {% for foo in pon %}
-                    <td{% if foo.first_lect %} class="nn" data-tooltip="{{ d|lector:foo.first_lect.id}}"{% endif %}>{{ foo.first_lect|default_if_none:""  }}</td>
-                    <td{% if foo.second_lect %}  class="nn"  data-tooltip="{{ d|lector:foo.second_lect.id}}"{% endif %}>{{ foo.second_lect|default_if_none:"" }}</td>
-                    <td{% if foo.thrid_lect %} class="nn" data-tooltip="{{ d|lector:foo.thrid_lect.id}}"{% endif %}>{{ foo.thrid_lect|default_if_none:"" }}</td>
-                    <td{% if foo.four_lect %} class="nn" data-tooltip="{{ d|lector:foo.four_lect.id}}"{% endif %}>{{ foo.four_lect|default_if_none:"" }}</td>
-                    <td{% if foo.five_lect %} class="nn" data-tooltip="{{ d|lector:foo.five_lect.id}}"{% endif %}>{{ foo.five_lect|default_if_none:"" }}</td>
-                {% endfor %}
-            {% else %}
-                <td></td><td></td><td></td><td></td><td></td>
-            {% endif %}
-
-
-    </tr>
-    <tr>
-            <td>Вторник</td>
-            {% if vt %}
-                {% for foo in vt %}
-                    <td{% if foo.first_lect %} class="nn" data-tooltip="{{ d|lector:foo.first_lect.id}}"{% endif %}>{{ foo.first_lect|default_if_none:""  }}</td>
-                    <td{% if foo.second_lect %}  class="nn"  data-tooltip="{{ d|lector:foo.second_lect.id}}"{% endif %}>{{ foo.second_lect|default_if_none:"" }}</td>
-                    <td{% if foo.thrid_lect %} class="nn" data-tooltip="{{ d|lector:foo.thrid_lect.id}}"{% endif %}>{{ foo.thrid_lect|default_if_none:"" }}</td>
-                    <td{% if foo.four_lect %} class="nn" data-tooltip="{{ d|lector:foo.four_lect.id}}"{% endif %}>{{ foo.four_lect|default_if_none:"" }}</td>
-                    <td{% if foo.five_lect %} class="nn" data-tooltip="{{ d|lector:foo.five_lect.id}}"{% endif %}>{{ foo.five_lect|default_if_none:"" }}</td>
-                {% endfor %}
-            {% else %}
-                <td></td><td></td><td></td><td></td><td></td>
-            {% endif %}
-
-    </tr>
-    <tr>
-                <td>Среда</td>
-                {% if sr %}
-                    {% for foo in sr %}
-                        <td{% if foo.first_lect %} class="nn" data-tooltip="{{ d|lector:foo.first_lect.id}}"{% endif %}>{{ foo.first_lect|default_if_none:""  }}</td>
-                        <td{% if foo.second_lect %}  class="nn"  data-tooltip="{{ d|lector:foo.second_lect.id}}"{% endif %}>{{ foo.second_lect|default_if_none:"" }}</td>
-                        <td{% if foo.thrid_lect %} class="nn" data-tooltip="{{ d|lector:foo.thrid_lect.id}}"{% endif %}>{{ foo.thrid_lect|default_if_none:"" }}</td>
-                        <td{% if foo.four_lect %} class="nn" data-tooltip="{{ d|lector:foo.four_lect.id}}"{% endif %}>{{ foo.four_lect|default_if_none:"" }}</td>
-                        <td{% if foo.five_lect %} class="nn" data-tooltip="{{ d|lector:foo.five_lect.id}}"{% endif %}>{{ foo.five_lect|default_if_none:"" }}</td>
-                    {% endfor %}
-                {% else %}
-                    <td></td><td></td><td></td><td></td><td></td>
-                {% endif %}
-
-        </tr>
-        <tr>
-                <td>Четверг</td>
-                {% if chet %}
-                    {% for foo in chet %}
-                        <td{% if foo.first_lect %} class="nn" data-tooltip="{{ d|lector:foo.first_lect.id}}"{% endif %}>{{ foo.first_lect|default_if_none:""  }}</td>
-                        <td{% if foo.second_lect %}  class="nn"  data-tooltip="{{ d|lector:foo.second_lect.id}}"{% endif %}>{{ foo.second_lect|default_if_none:"" }}</td>
-                        <td{% if foo.thrid_lect %} class="nn" data-tooltip="{{ d|lector:foo.thrid_lect.id}}"{% endif %}>{{ foo.thrid_lect|default_if_none:"" }}</td>
-                        <td{% if foo.four_lect %} class="nn" data-tooltip="{{ d|lector:foo.four_lect.id}}"{% endif %}>{{ foo.four_lect|default_if_none:"" }}</td>
-                        <td{% if foo.five_lect %} class="nn" data-tooltip="{{ d|lector:foo.five_lect.id}}"{% endif %}>{{ foo.five_lect|default_if_none:"" }}</td>
-                    {% endfor %}
-                {% else %}
-                    <td></td><td></td><td></td><td></td><td></td>
-                {% endif %}
-
-        </tr>
-        <tr>
-                <td>Пятница</td>
-                {% if pt %}
-                    {% for foo in pt %}
-                        <td{% if foo.first_lect %} class="nn" data-tooltip="{{ d|lector:foo.first_lect.id}}"{% endif %}>{{ foo.first_lect|default_if_none:""  }}</td>
-                        <td{% if foo.second_lect %}  class="nn"  data-tooltip="{{ d|lector:foo.second_lect.id}}"{% endif %}>{{ foo.second_lect|default_if_none:"" }}</td>
-                        <td{% if foo.thrid_lect %} class="nn" data-tooltip="{{ d|lector:foo.thrid_lect.id}}"{% endif %}>{{ foo.thrid_lect|default_if_none:"" }}</td>
-                        <td{% if foo.four_lect %} class="nn" data-tooltip="{{ d|lector:foo.four_lect.id}}"{% endif %}>{{ foo.four_lect|default_if_none:"" }}</td>
-                        <td{% if foo.five_lect %} class="nn" data-tooltip="{{ d|lector:foo.five_lect.id}}"{% endif %}>{{ foo.five_lect|default_if_none:"" }}</td>
-                    {% endfor %}
-                {% else %}
-                    <td></td><td></td><td></td><td></td><td></td>
-                {% endif %}
-
-        </tr>
-
+<table border="1" class="shel_head">
+    <tr><td colspan="6">{{ group }}</td></tr>
+    <tr><td>День</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
 </table>
+<div class="shell_cont">
+    <table border="1" class="shelude_days">
+        <tr><td>Понедельник</td></tr>
+        <tr><td>Вторник</td></tr>
+        <tr><td>Среда</td></tr>
+        <tr><td>Четверг</td></tr>
+        <tr><td>Пятница</td></tr>
+    </table>
+    <table border="1" class="shelude">
+        {% for day in data %}
+            {% if day %}
+
+
+                {% for foo in day %}
+                    <tr>
+                            <td{% if foo.first_lect %} class="nn" data-tooltip="{{ d|lector:foo.first_lect.id}}"{% endif %}>{{ foo.first_lect|default_if_none:""  }}</td>
+                            <td{% if foo.second_lect %}  class="nn"  data-tooltip="{{ d|lector:foo.second_lect.id}}"{% endif %}>{{ foo.second_lect|default_if_none:"" }}</td>
+                            <td{% if foo.thrid_lect %} class="nn" data-tooltip="{{ d|lector:foo.thrid_lect.id}}"{% endif %}>{{ foo.thrid_lect|default_if_none:"" }}</td>
+                            <td{% if foo.four_lect %} class="nn" data-tooltip="{{ d|lector:foo.four_lect.id}}"{% endif %}>{{ foo.four_lect|default_if_none:"" }}</td>
+                            <td{% if foo.five_lect %} class="nn" data-tooltip="{{ d|lector:foo.five_lect.id}}"{% endif %}>{{ foo.five_lect|default_if_none:"" }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div>

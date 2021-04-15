@@ -12,10 +12,11 @@
     {{ lecture.text|safe }}
     </p>
 
-    {# {{ lecture.comment_set.all }} #}
 
     {{ autor }}
     <a href="{% url 'main:favorite' lecture.id %}">Закладки</a>
+    <hr>
+
     {% for el in lecture.comment_set.all %}
         <p><b>
         {{ el.autor_name }}

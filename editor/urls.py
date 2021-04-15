@@ -10,10 +10,10 @@ urlpatterns = [
 
     path('students/', views.students_list, name='students'),
 
-    path('shelude/', views.shelude, name='shelude'),
+    path('shelude/', views.shelude_save, name='shelude'),
     path('shelude/<int:pk>/', views.shelude_update.as_view(), name='shelude_up'),
-    path('shelude/view/<int:pk>/', views.shelude_view, name='shelude_currect'),
+    path('shelude/view/<int:pk>/', views.get_shelude_list, name='shelude_currect'),
     path('shelude/del/<int:pk>/', views.shelude_del, name='shelude_del'),
 
-    path('export/', views.your_view, name='export'),
+    path('export/', views.save_students_table, name='export'),
     ]

@@ -45,18 +45,7 @@ class LectureForm(ModelForm):
         self.fields['date'].label = ""
         self.fields['rel_pub'].label = "Отложенная публикация"
 
-    def clean(self):
-        cleaned_data = super().clean()
-        rel_pub = cleaned_data.get("rel_pub")
-        date = cleaned_data.get("date")
 
-        if rel_pub:
-            print(rel_pub)
-            if not date:
-                raise forms.ValidationError(
-                    "Did not send for 'help' in the subject despite "
-                    "CC'ing yourself."
-                )
 class SheludeForm(ModelForm):
     class Meta:
         model = Shelude
