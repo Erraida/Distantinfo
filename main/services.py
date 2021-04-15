@@ -45,7 +45,7 @@ def sheludeService(group_id):
         days = (pn,vt,sr,ch,pt)
     except:
 
-        days = (pn=None,vt=None,sr=None,ch=None,pt=None)
+        days = (pn,vt,sr,ch,pt)
 
     return days,group
 
