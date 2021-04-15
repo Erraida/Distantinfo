@@ -25,6 +25,7 @@ def error_404(request, exception):
 
 
 def shelude_jquery(request):
+    group_id = 1
     if request.method == "POST":
         group = groupForm(request.POST)
 
