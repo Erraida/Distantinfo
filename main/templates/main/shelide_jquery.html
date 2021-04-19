@@ -1,6 +1,7 @@
 {% load main_extras %}
 <table border="1" class="shel_head">
-    <tr><td colspan="6">{{ group }}</td></tr>
+    <caption>{{ group }}</caption>
+    
     <tr><td>День</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
 </table>
 <div class="shell_cont">
@@ -31,3 +32,28 @@
         {% endfor %}
     </table>
 </div>
+<br><br><br>
+<table border="1" class="shelude">
+<caption>События</caption>
+    <thead>
+        <tr>
+                <th>Дисциплина</th>
+                <th>Тип</th>
+                <th>Лектор</th>
+                <th>Корпус</th>
+                <th>Аудитория</th>
+                <th>Дата</th>
+        </tr>
+    </thead>
+    {% for event in events %}
+        <tr>
+            <td>{{ event.Discipline }}</td>
+            <td>{{ event.Type }}</td>
+            <td>{{ d|lector:event.Group.id}}</td>
+            <td>{{ event.Building }}</td>
+            <td>{{ event.Room }}</td>
+            <td>{{ event.date }}</td>
+        </tr>
+    {% endfor %}
+
+</table>

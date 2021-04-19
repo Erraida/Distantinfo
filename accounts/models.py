@@ -4,15 +4,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import Group as user_group
 # Create your models here.
 
-class Group(models.Model):
-    group_num = models.CharField('Название группы', max_length=15)
-
-    def __str__(self):
-        return self.group_num
-
-    class Meta:
-        verbose_name = 'Группа'
-        verbose_name_plural = 'Группы'
+from main.models import Group
 
 class UserAccount(models.Model):
     User = models.OneToOneField(User,on_delete=models.CASCADE,null=True)

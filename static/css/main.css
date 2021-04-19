@@ -409,6 +409,7 @@ a.shellink{
     border-collapse: collapse;
     margin-left: -1px;
     margin-top: -1px;
+    text-align:center;
 }
 .shelude td {
     width: 200px;

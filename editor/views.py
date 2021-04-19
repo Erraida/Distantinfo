@@ -12,7 +12,7 @@ from .services.LectureControllers import *
 from .services.CommonControllers import *
 
 from .tasks import *
-from .forms import LectureForm, SheludeForm
+from .forms import LectureForm, SheludeForm, EventForm
 from main.models import Shelude, LectRequest
 from accounts.models import Group
 
@@ -89,6 +89,14 @@ def shelude_save(request):
     Shelude_list, ShellForm = shelude_saveController(request)
     return render(request, 'editor/shelude.html', {'Shelude': Shelude_list, 'SheludeForm': ShellForm})
 
+def event_sheldue_save(request):
+    if request.method == "POST":
+        NewEventForm = EventForm(request.POST)
+        NewEventForm.save()
+        return redirect('editor:event')
+    else:
+        NewEventForm = EventForm()
+    return render(request, 'editor/shelude.html', {'SheludeForm': NewEventForm})
 
 @login_required
 @user_passes_test(is_shelude, login_url='/lections')

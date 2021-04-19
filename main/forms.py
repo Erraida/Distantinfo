@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm, TextInput, Select
 from editor.models import Group
-from .models import LectRequest, Comment
+from .models import LectRequest, Comment, SessionShelude
 
 
 class seachForm (forms.Form):
@@ -61,4 +61,6 @@ class CommentForm (ModelForm):
     def __init__(self, *args, **kwargs):
             super(CommentForm, self).__init__(*args, **kwargs)
             self.fields['comment_text'].label = ""
+
+
 

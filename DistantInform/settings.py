@@ -157,13 +157,6 @@ STATICFILES_DIRS = (
 
 CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'a.nesterovtan@gmail.com' # типо адекватный логин
-# EMAIL_HOST_PASSWORD = 'Rau717yp' # типо адекватный пароль
-# EMAIL_PORT = 465
-# EMAIL_USE_SSL = True
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
 
 EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']

@@ -37,12 +37,13 @@ def shelude_jquery(request):
             except:
                 group_id = 1
 
-    days, group = sheludeService(group_id)
+    days, group,events = sheludeService(group_id)
 
     data = render_to_string("main/shelide_jquery.html",
                             {
                                 'data': days,
                                 'group': group,
+                                'events': events,
 
                             })
     return HttpResponse(data)

@@ -4,7 +4,7 @@ from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
 from django.forms import ModelForm, TextInput, Textarea, Select, HiddenInput, DateTimeField, DateTimeInput
 
-from main.models import Lecture,Shelude
+from main.models import Lecture, Shelude, SessionShelude
 from main.models import DiscList
 from django import forms
 
@@ -50,3 +50,54 @@ class SheludeForm(ModelForm):
     class Meta:
         model = Shelude
         fields = '__all__'
+
+class EventForm (ModelForm):
+    date = forms.DateTimeField(
+        input_formats=['%Y-%m-%d %H:%M'],
+        required=False,
+        widget=forms.DateTimeInput(attrs={
+            'class': 'lect_edit',
+            'placeholder': 'Дата проведения',
+            'autocomplete':'off'
+
+
+        }))
+    comment_text = forms.Textarea(attrs={
+        'id': 'comment',
+        'placeholder': 'Название'
+    })
+    class Meta:
+        model = SessionShelude
+        fields = '__all__'
+
+        widgets = {
+            'Group': Select(attrs={
+                'class': 'lect_edit'
+            }),
+            'Discipline': Select(attrs={
+                'class': 'lect_edit'
+            }),
+            'Type': Select(attrs={
+                'class': 'lect_edit'
+            }),
+            'Building': Select(attrs={
+                'class': 'lect_edit'
+            }),
+            'Room': TextInput(attrs={
+                'class': 'lect_edit',
+                'placeholder': 'Аудитория'
+            }),
+
+        }
+    def __init__(self, *args, **kwargs):
+        super(EventForm, self).__init__(*args, **kwargs)
+        self.fields['Group'].empty_label = "Выберите группу"
+        self.fields['Group'].label = ""
+        self.fields['Building'].empty_label = "Выберите здание"
+        self.fields['Building'].label = ""
+        self.fields['Type'].empty_label = "Выберите тип"
+        self.fields['Type'].label = ""
+        self.fields['Discipline'].empty_label = "Выберите предмет"
+        self.fields['Discipline'].label = ""
+        self.fields['date'].label = ""
+        self.fields['Room'].label = ""

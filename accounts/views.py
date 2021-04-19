@@ -7,10 +7,9 @@ from .models import UserAccount, Notes
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth import login, logout
-from django.template.loader import render_to_string
+
 
 from .services import registration
-from .tasks import register_confirm
 
 
 # Create your views here.

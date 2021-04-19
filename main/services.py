@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 
 from accounts.models import Group, UserAccount
 from main.forms import seachForm, LectReqForm
-from main.models import Day, Shelude, Lecture, Discipline, Favorite
+from main.models import Day, Shelude, Lecture, Discipline, Favorite, SessionShelude
 from accounts.models import Group
 
 
@@ -34,6 +34,7 @@ def sheludeService(group_id):
 
     try:
         data = Shelude.objects.filter(Group=group_id)
+        events = SessionShelude.objects.filter(Group=group_id)
         group = Group.objects.get(id=group_id)
 
         pn = data.filter(Day=pon_id)
@@ -44,10 +45,16 @@ def sheludeService(group_id):
 
         days = (pn,vt,sr,ch,pt)
     except:
+        pn = None
+        vt = None
+        sr = None
+        ch = None
+        pt = None
+        group = None
+        events = None
+        days = (pn, vt, sr, ch, pt)
 
-        days = {'pn': None, 'vt': None, 'sr': None, 'ch': None, 'pt': None}
-
-    return days,group
+    return days,group,events
 
 def lectionsService(request, *args, **kwargs):
     discioline_id = None

@@ -15,5 +15,7 @@ urlpatterns = [
     path('shelude/view/<int:pk>/', views.get_shelude_list, name='shelude_currect'),
     path('shelude/del/<int:pk>/', views.shelude_del, name='shelude_del'),
 
+    path('event/', views.event_sheldue_save, name='event'),
+
     path('export/', views.save_students_table, name='export'),
     ]

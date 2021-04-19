@@ -3,8 +3,18 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 from DistantInform import settings
-from accounts.models import Group
+
 from django.contrib.auth.models import User
+
+class Group(models.Model):
+    group_num = models.CharField('Название группы', max_length=15)
+
+    def __str__(self):
+        return self.group_num
+
+    class Meta:
+        verbose_name = 'Группа'
+        verbose_name_plural = 'Группы'
 
 
 class Discipline(models.Model):
@@ -111,6 +121,44 @@ class Shelude(models.Model):
         verbose_name = 'Расписание'
         verbose_name_plural = 'Расписания'
         unique_together = ('Group', 'Day')
+
+class EventType (models.Model):
+    Type = models.CharField('Тип события',max_length=10)
+
+    def __str__(self):
+        return self.Type
+
+    class Meta:
+        verbose_name = 'Тип события'
+        verbose_name_plural = 'Типы события'
+
+
+class Building (models.Model):
+    Num = models.CharField('Номер здания',max_length=10)
+
+    def __str__(self):
+        return self.Num
+
+    class Meta:
+        verbose_name = 'Здание'
+        verbose_name_plural = 'Здания'
+
+
+class SessionShelude(models.Model):
+    Group = models.ForeignKey(Group, on_delete=models.PROTECT, null=True)
+    Discipline = models.ForeignKey(Discipline,on_delete=models.CASCADE)
+    Type = models.ForeignKey(EventType,on_delete=models.CASCADE)
+    Building = models.ForeignKey(Building,on_delete=models.CASCADE)
+    Room = models.CharField('Номер аудитории',max_length=10)
+    date = models.DateTimeField(null=True, blank=True, verbose_name='Дата проведения')
+
+    def __str__(self):
+        return self.Discipline.name
+
+    class Meta:
+        verbose_name = 'Расписание зачетов/экзаменов'
+        verbose_name_plural = 'Расписания зачетов/экзаменов'
+
 
 
 class Favorite(models.Model):

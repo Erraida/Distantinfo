@@ -4,6 +4,9 @@
 {% endblock %}
 
 {% block Content %}
+     <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/jquery.datetimepicker.full.min.js"></script>
+    <link rel="stylesheet" href="/static/css/jquery.datetimepicker.css">
 {% for data in Shelude %}
     <ul>
         <li class="shelude_list"><a href="{{ data.id }}" class="shellink">{{ data.Group }}  {{ data.Day }}</a> <a href="{{ data.id }}" class="shellink_ch">Редактировать</a><a href="{% url 'editor:shelude_del' data.id %}" class="shellink_ch">Удалить</a></li>
@@ -15,5 +18,10 @@
     {{ SheludeForm.as_p }}
     <button type="submit">Опубликовать</button>
     </form>
-
+    <script>
+    jQuery('#id_date').datetimepicker({
+                      format:'Y-m-d H:i',
+                       lang:'ru'
+        });
+    </script>
 {% endblock %}
