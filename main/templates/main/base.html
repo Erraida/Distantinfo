@@ -30,10 +30,10 @@
                   {% if request.user.is_authenticated %}
 
                     <li><a href="{% url 'accounts:account_profile'%}">Профиль</a></li>
-                      {% if request.user|has_group:"лох" %}
+                      {% if request.user|has_group:"Лектор" %}
                             <li><a href="{% url 'editor:editor' %}">Редактор</a></li>
                       {% endif %}
-                      {% if request.user|has_group:"лох" %}
+                      {% if request.user|has_group:"Составитель расписаний" %}
                             <li><a href="{% url 'editor:shelude' %}">Редактор расписаний</a></li>
                       {% endif %}
                     <li><a href="{% url 'accounts:Logout' %}">Выйти</a></li>
