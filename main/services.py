@@ -56,15 +56,6 @@ def sheludeService(group_id):
         days = (pn, vt, sr, ch, pt)
 
     return days,group,events
-        pn=None
-        vt=None
-        sr=None
-        ch=None
-        pt=None
-        group=None
-        days = (pn,vt,sr,ch,pt)
-
-    return days,group
 
 
 def lectionsService(request, *args, **kwargs):
