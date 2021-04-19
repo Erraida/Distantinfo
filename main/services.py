@@ -56,7 +56,6 @@ def sheludeService(group_id):
         days = (pn, vt, sr, ch, pt)
 
     return days,group,events
-=======
         pn=None
         vt=None
         sr=None
