@@ -11,6 +11,7 @@ from accounts.models import Group
 
 
 def sheludeService(group_id):
+    
     try:
         pon_id = Day.objects.get(day='Понедельник').id
     except:
@@ -45,6 +46,7 @@ def sheludeService(group_id):
 
         days = (pn,vt,sr,ch,pt)
     except:
+<<<<<<< HEAD
         pn = None
         vt = None
         sr = None
@@ -55,6 +57,17 @@ def sheludeService(group_id):
         days = (pn, vt, sr, ch, pt)
 
     return days,group,events
+=======
+        pn=None
+        vt=None
+        sr=None
+        ch=None
+        pt=None
+        group=None
+        days = (pn,vt,sr,ch,pt)
+
+    return days,group
+
 
 def lectionsService(request, *args, **kwargs):
     discioline_id = None
