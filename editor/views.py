@@ -18,11 +18,11 @@ from accounts.models import Group
 
 
 def is_lector(user):
-    return user.groups.filter(name='лох').exists()
+    return user.groups.filter(name='Лектор').exists()
 
 
 def is_shelude(user):
-    return user.groups.filter(name='лох').exists()
+    return user.groups.filter(name='Составитель расписаний').exists()
 
 
 def save_students_table(request):
