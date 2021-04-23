@@ -14,8 +14,6 @@ from accounts.models import Group
 
 # Create your views here.
 def index(request):
-    send_mail(
-    
     return render(request, 'main/index.html')
 
 
