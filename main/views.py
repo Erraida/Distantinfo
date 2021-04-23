@@ -15,12 +15,7 @@ from accounts.models import Group
 # Create your views here.
 def index(request):
     send_mail(
-    'На сайт зашли',
-    'На сайт зашли',
-    settings.EMAIL_HOST_USER,
-    ['a.nesterovtan@gmail.com'],
-    fail_silently=False,
-)
+    
     return render(request, 'main/index.html')
 
 
