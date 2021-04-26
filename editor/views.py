@@ -134,7 +134,7 @@ class shelude_update(UserPassesTestMixin, UpdateView):
     template_name = 'editor/shelude_update.html'
 
     def test_func(self):
-        return self.request.user.groups.filter(name='лох').exists()
+        return self.request.user.groups.filter(name='Составитель расписаний').exists()
 
     def handle_no_permission(self):
         return redirect('main:home')
