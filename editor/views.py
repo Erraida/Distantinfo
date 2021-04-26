@@ -164,9 +164,3 @@ class Requsets_update(UserPassesTestMixin, UpdateView):
         return redirect('main:home')
 
 
-def is_lector(user):
-    return user.groups.filter(name='лох').exists()
-
-
-def is_shelude(user):
-    return user.groups.filter(name='лох').exists()
