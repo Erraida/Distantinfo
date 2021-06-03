@@ -14,7 +14,13 @@ def lecture_coll(things, disc):
         return amoung
     except:
         return 0
-
+@register.filter()
+def verb_name(user):
+    try:
+        autor = UserAccount.objects.get(User=user)
+    except UserAccount.DoesNotExist:
+        return None
+    return f'{autor.surname} {autor.name}'
 
 @register.filter()
 def lector(things, disc):
