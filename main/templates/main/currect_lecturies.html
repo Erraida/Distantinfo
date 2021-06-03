@@ -1,34 +1,47 @@
 {% extends 'main/base.html' %}
+{% load main_extras %}
 
 {% block Title %}
 {{ lecture.title }}
 {% endblock %}
 {% block Content %}
+    <div class="article-full">
+        <div class="art_cover">
+            <div class="art_cover_title">
+                <h2>{{ lecture.title }}</h2>
+                <b>Автор: </b> {{ autor.surname }} {{ autor.name }}
+                {% if request.user.is_authenticated %}
+                    <p><a href="{% url 'main:favorite' lecture.id %}">В закладки</a></p>
+                {% endif %} 
 
-    <br><br>
-    <h2>{{ lecture.title }}</h2>
-    
-    <p>
-    {{ lecture.text|safe }}
-    </p>
+            </div>
+        </div>
 
+        <div class="article" style="margin-left: 0; ">
+            <p>
+            {{ lecture.text|safe }}
+            </p>
 
-    {{ autor }}
-    <a href="{% url 'main:favorite' lecture.id %}">Закладки</a>
-    <hr>
+        </div>
 
+    </div>
+    {% if  request.user.is_authenticated  %}
+        <form action="{% url 'main:comment' lecture.id %}" id="commentform">
+             {% csrf_token %}
+                {{ comment.as_p }}
+                <br>
+            <button type="submit" class="sb">Оставить комментарий</button>
+        </form>
+    {% endif %}
     {% for el in lecture.comment_set.all %}
-        <p><b>
-        {{ el.autor_name }}
-        </p></b>
-      <p>
-      {{ el.comment_text }}
-      </p>
+        <div class="article">
+        <b>{{ el.autor_name|verb_name }}</b>
+            <hr>
+        {{ el.comment_text }}
+        </div>
+
+
     {% endfor %}
-    <form action="{% url 'main:comment' lecture.id %}" id="commentform">
-         {% csrf_token %}
-            {{ comment.as_p }}
-            <br>
-        <button type="submit" class="sb">Оставить комментарий</button>
-    </form>
+
+
 {% endblock %}
