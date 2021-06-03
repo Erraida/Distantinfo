@@ -100,12 +100,6 @@ header{
     width: 300px;
     height: 30px;
 }
-#comment {
-    width: 100%;
-    height: 300px;
-    resize: none;
-}
-
 
 
 /*.lectcover {
@@ -463,4 +457,32 @@ td.nn {
    }
    [data-tooltip]:hover::after {
     opacity: 1;
+   }
+   .article-full{
+
+
+   }
+   .art_cover{
+       width: 100%;
+       height: 200px;
+        background: #2F4F4F;
+       display: flex;
+       align-items: flex-end;
+        flex: 1 0 auto;
+
+   }
+   .art_cover_title{
+       width: 100%;
+       height: 50%;
+       background: rgba(220, 220, 220, 0.7);
+
+   }
+   .sb {
+       width: 300px;
+       height: 40px;
+   }
+   #comment {
+       width: 100%;
+       height: 100px;
+       resize: none;
    }
