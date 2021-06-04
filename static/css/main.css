@@ -112,6 +112,7 @@ header{
 /*Блок новостей*/
         /*Лекции*/
 		.article {
+			box-sizing: border-box;
 			display: block;
 			width: 100%;
 			min-height:100px;
