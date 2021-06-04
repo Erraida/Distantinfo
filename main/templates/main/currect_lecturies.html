@@ -5,6 +5,12 @@
 {{ lecture.title }}
 {% endblock %}
 {% block Content %}
+<style> 
+    .article {
+        margin-left: 0;
+        margin-top: 0;
+    }
+</style>
     <div class="article-full">
         <div class="art_cover">
             <div class="art_cover_title">
@@ -17,7 +23,7 @@
             </div>
         </div>
 
-        <div class="article" style="margin-left: 0; ">
+        <div class="article">
             <p>
             {{ lecture.text|safe }}
             </p>
