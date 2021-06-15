@@ -8,6 +8,7 @@
     <div class="info">
         <b>Имя:</b>{{ user_account.name }} {{ user_account.surname }}(<a href="{% url 'accounts:account_update' request.user.id %}">Обновить данные</a>)
         <br>
+        (<a href="{% url 'accounts:account_request' %}">Запросить роль</a>)
         <b>Группа:</b>{{ user_account.Group }}
     </div>
     <div class="info">
